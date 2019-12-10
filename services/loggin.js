@@ -21,6 +21,7 @@ const logger = winston.createLogger({
     // - Write all logs error (and below) to `error.log`.
     //
     new winston.transports.File({ filename: 'error.log', level: 'error' }),
+    new winston.transports.File({ filename: 'info.log', level: 'info' }),
     new winston.transports.File({ filename: 'combined.log' })
   ]
 });
@@ -51,8 +52,8 @@ const logError = (err, req, res, next) => {
   logger.error(err);
   next();
 };
-
 module.exports = {
   logRequest: logRequest,
-  logError: logError
+  logError: logError,
+  logger: logger
 };
